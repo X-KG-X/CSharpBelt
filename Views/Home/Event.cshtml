@@ -1,0 +1,38 @@
+@model Event
+<p class="h4">Dojo Acitivity Center<span class="float-right"> <a href="/success" class="h6" >Home</a><a href="/logout" class="h6 ml-5">Logout</a></span></p>
+
+<div class="mt-5">
+    <p>@Model.Title 
+
+        @if(@Model.UserId==@ViewBag.UserId)
+        {
+            <a href="/delete/@Model.EventId" class="float-right btn btn-primary">Delete</a>
+        }
+        else
+        {
+            @if(@Model.Participants.Any(g=>g.UserId==@ViewBag.userId))
+            {
+                <a href="/leave/@Model.EventId" class="float-right btn btn-primary">Leave</a>
+            }
+            else
+            {
+                <a href="/join/@Model.EventId" class="float-right btn btn-primary">Join</a>
+            }
+        }
+        
+    </p>
+    <p>Event Coordinator: @Model.Coordinator.FirstName</p>
+    <p>Description:</p>
+    <p>@Model.Description</p>
+</div>
+<div class="mt-5">
+    <p>Participants:</p>
+    <ul>
+    @foreach(var one in Model.Participants)
+    {
+        <li>@one.User.FirstName</li>
+    }
+
+    </ul>
+
+</div>

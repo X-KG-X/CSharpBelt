@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IndexViewModel
+<div class="row">
+<div class="col mt-5">
+    <p class="h3">Register
+    </p>
+            <form asp-action="register" asp-controller="Home" method="post">
+            <div>
+                <label asp-for="NewUser.FirstName"></label>
+                <input class="float-right" asp-for="NewUser.FirstName">
+            </div>
+            <span class="text-danger" asp-validation-for="NewUser.FirstName"></span>
+
+            <div>
+                <label asp-for="NewUser.LastName"></label>
+                <input class="float-right" asp-for="NewUser.LastName">
+            </div>
+            <span class="text-danger" asp-validation-for="NewUser.LastName"></span>
+    
+            <div>
+                <label asp-for="NewUser.Email"></label>
+                <input class="float-right"  asp-for="NewUser.Email">
+            </div>
+            <span class="text-danger" asp-validation-for="NewUser.Email"></span>
+
+            <div>
+                <label asp-for="NewUser.Password"></label>
+                <input class="float-right" type="password" asp-for="NewUser.Password">
+            </div>
+            <span class="text-danger" asp-validation-for="NewUser.Password"></span>
+
+            <div>
+                <label asp-for="NewUser.RePassword"></label>
+                <input class="float-right" type="password" asp-for="NewUser.RePassword">
+            </div>
+            <span class="text-danger" asp-validation-for="NewUser.RePassword"></span>
+            <input class="float-right" value="Submit" type="submit">    
+        </form>
+
+</div>
+
+<div class=" col mt-5">
+    <p class="h3">Login
+    </p>
+            <form asp-action="login" asp-controller="Home" method="post">    
+            <div>
+                <label asp-for="NewLogin.Email"></label>
+                <input class="float-right"  asp-for="NewLogin.Email">
+            </div>
+            <span class="text-danger" asp-validation-for="NewLogin.Email"></span>
+
+            <div>
+                <label asp-for="NewLogin.Password"></label>
+                <input class="float-right" type="password" asp-for="NewLogin.Password">
+            </div>
+            <span class="text-danger" asp-validation-for="NewLogin.Password"></span>
+
+            <input class="float-right" value="Submit" type="submit">    
+        </form>
+
+</div>
+</div>

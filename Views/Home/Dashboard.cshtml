@@ -1,0 +1,47 @@
+@model List<Event>
+<p class="h4">Dojo Acitivity Center<span class="float-right"> Welcome, @ViewBag.user.FirstName<a href="logout" class="h6 ml-5">Logout</a></span></p>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Activity</th>
+      <th scope="col">Date and Time</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Event Coordinator</th>
+      <th scope="col">No. of Participants</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+@foreach(Event one in Model)
+{
+    <tr>
+        <td><a href="oneEvent/@one.EventId">@one.Title</a></td>
+        <td>@one.EventDate.ToString("MM/d @ h:mm tt")</td>
+        <td>@one.Duration.ToString("0.00")</td>
+        <td>@one.Coordinator.FirstName</td>
+        <td>@one.Participants.Count()</td>
+        @if(one.UserId==ViewBag.userId)
+        {
+            <td><a href="/delete/@one.EventId">Delete</a></td>
+        }
+        else
+        {
+            @if(one.Participants.Any(g=>g.UserId==ViewBag.userId))
+            {
+                <td><a href="/leave/@one.EventId">Leave</a></td>
+            }
+            else
+            {
+                <td><a href="/join/@one.EventId">Join</a></td>
+            }
+        }
+
+
+    </tr>
+
+}
+
+  </tbody>
+</table>
+<a href="newActivity" class="btn btn-info float-right">Add New Activity</a>
